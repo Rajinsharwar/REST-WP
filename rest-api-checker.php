@@ -62,9 +62,9 @@ function rest_wp_page_content() {
 
                  <div>
                    <label for="<?php echo 'key'.$n; ?>">Key:</label>
-                   <input type="text" id="<?php echo 'key'.$n; ?>" name="<?php echo 'key'.$n; ?>" value="<?php echo $_POST['key'.$n]; ?>">
+                   <input type="text" id="<?php echo esc_attr('key'.$n); ?>" name="<?php echo esc_attr('key'.$n); ?>" value="<?php echo esc_attr($_POST['key'.$n]); ?>">
                    <label for="<?php echo 'value'.$n; ?>">Value:</label>
-                   <input type="text" id="<?php echo 'value'.$n; ?>" name="<?php echo 'value'.$n; ?>" value="<?php echo $_POST['value'.$n]; ?>">
+                   <input type="text" id="<?php echo esc_attr('value'.$n); ?>" name="<?php echo esc_attr('value'.$n); ?>" value="<?php echo esc_attr($_POST['value'.$n]); ?>">
                    <button type="button" onclick="deleteKeyValueField(this)">Delete</button>
                  </div>
                  
@@ -78,9 +78,9 @@ function rest_wp_page_content() {
            <button type="button" id="add-another-body" onclick="addKeyValueFieldBody()">Add another</button><br><br>
           <div id="key-value-fields-body">
               <label for="key1_body">Key:</label>
-              <input type="text" id="key1_body" name="key1_body" value="<?php if (isset($_POST['key1_body'])) { echo $_POST['key1_body']; } ?>">
+              <input type="text" id="<?php echo esc_attr('key1_body'); ?>" name="<?php echo esc_attr('key1_body'); ?>" value="<?php if (isset($_POST['key1_body'])) { echo esc_attr($_POST['key1_body']); } ?>">
               <label for="value1_body">Value:</label>
-              <input type="text" id="value1_body" name="value1_body" value="<?php if (isset($_POST['value1_body'])) { echo $_POST['value1_body']; } ?>">
+              <input type="text" id="<?php echo esc_attr('value1_body'); ?>" name="<?php echo esc_attr('value1_body'); ?>" value="<?php if (isset($_POST['value1_body'])) { echo esc_attr($_POST['value1_body']); } ?>">
               
               <?php
               $m = 2;
@@ -104,7 +104,7 @@ function rest_wp_page_content() {
         </form>
 
        <script>
-          var fieldIndex = <?php echo $n; ?>;
+          var fieldIndex = <?php echo esc_js($n); ?>;
           function addKeyValueField() {
               var keyValueFields = document.getElementById('key-value-fields');
               var newFields = document.createElement('div');
@@ -116,7 +116,7 @@ function rest_wp_page_content() {
               var keyValueField = button.parentElement;
               keyValueField.remove();
           }
-          var fieldIndexBody = <?php echo $m; ?>;
+          var fieldIndexBody = <?php echo esc_js($m); ?>;
           function addKeyValueFieldBody() {
           var keyValueFieldsBody = document.getElementById('key-value-fields-body');
           var newFieldsBody = document.createElement('div');
@@ -200,8 +200,8 @@ function rest_wp_page_content() {
        </br>
        <?php
        $body = strip_tags($body);
-       echo '<p>Status: ' . $status . '</p>';
-       echo '<p>Latency: ' . $latency . 'ms</p>';
+       echo '<p>Status: ' . esc_html($status) . '</p>';
+       echo '<p>Latency: ' . esc_html($latency) . 'ms</p>';
        echo 'Response Body: ';
        echo '<pre>';
        echo json_encode(json_decode($body), JSON_PRETTY_PRINT);
