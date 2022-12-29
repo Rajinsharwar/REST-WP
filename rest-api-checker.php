@@ -89,9 +89,9 @@ function rest_wp_page_content() {
 
             <div>
               <label for="<?php echo 'key'.$m.'_body'; ?>">Key:</label>
-              <input type="text" id="<?php echo 'key'.$m.'_body'; ?>" name="<?php echo 'key'.$m.'_body'; ?>" value="<?php echo $_POST['key'.$m.'_body']; ?>">
+              <input type="text" id="<?php echo esc_attr( 'key'.$m.'_body' ); ?>" name="<?php echo esc_attr( 'key'.$m.'_body' ); ?>" value="<?php echo esc_attr( $_POST['key'.$m.'_body'] ); ?>">
               <label for="<?php echo 'value'.$m.'_body'; ?>">Value:</label>
-              <input type="text" id="<?php echo 'value'.$m.'_body'; ?>" name="<?php echo 'value'.$m.'_body'; ?>" value="<?php echo $_POST['value'.$m.'_body']; ?>">
+              <input type="text" id="<?php echo esc_attr( 'value'.$m.'_body' ); ?>" name="<?php echo esc_attr( 'value'.$m.'_body' ); ?>" value="<?php echo esc_attr( $_POST['value'.$m.'_body'] ); ?>">
               <button type="button" onclick="deleteKeyValueFieldBody(this)">Delete</button>
               </div>
               <?php
