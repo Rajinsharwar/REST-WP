@@ -178,7 +178,7 @@ function rest_wp_page_content() {
            'body' => $body,
        );
        $start = microtime(true);
-       $response = wp_remote_get($endpoint, $args);
+       $response = wp_remote_request($endpoint, $args);
        $end = microtime(true);
 
        // Calculate the response latency
