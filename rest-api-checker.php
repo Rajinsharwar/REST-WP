@@ -39,7 +39,7 @@ function rest_wp_page_content() {
     <div class="form-container">
     <form method="post" action="">
        <label for="endpoint" style="font-size: 15px; font-weight: bold;">Endpoint URL:</label><br><br>
-       <input type="text" id="endpoint" name="endpoint" value="<?php if (isset($_POST['endpoint'])) { echo $_POST['endpoint']; } ?>"></br></br>
+       <input type="text" id="endpoint" name="endpoint" value="<?php if (isset($_POST['endpoint'])) { echo esc_attr( $_POST['endpoint'] ); } ?>"></br></br>
        <label for="method" style="font-size: 15px; font-weight: bold;">Request Method:</label><br><br>
        <select id="method" name="method">
            <option value="GET" <?php if (isset($_POST['method']) && $_POST['method'] == 'GET') { echo 'selected'; } ?>>GET</option>
@@ -51,9 +51,9 @@ function rest_wp_page_content() {
            <button type="button" id="add-another" onclick="addKeyValueField()">Add another</button><br><br>
            <div id="key-value-fields">
                <label for="key1">Key:</label>
-               <input type="text" id="key1" name="key1" value="<?php if (isset($_POST['key1'])) { echo $_POST['key1']; } ?>">
+               <input type="text" id="key1" name="key1" value="<?php if (isset($_POST['key1'])) { echo esc_attr( $_POST['key1'] ); } ?>">
                <label for="value1">Value:</label>
-               <input type="text" id="value1" name="value1" value="<?php if (isset($_POST['value1'])) { echo $_POST['value1']; } ?>">
+               <input type="text" id="value1" name="value1" value="<?php if (isset($_POST['value1'])) { echo esc_attr( $_POST['value1'] ); } ?>">
                
                <?php
                $n = 2;
@@ -61,9 +61,9 @@ function rest_wp_page_content() {
                  ?>
 
                  <div>
-                   <label for="<?php echo 'key'.$n; ?>">Key:</label>
+                   <label for="<?php echo esc_attr( 'key'.$n ); ?>">Key:</label>
                    <input type="text" id="<?php echo esc_attr('key'.$n); ?>" name="<?php echo esc_attr('key'.$n); ?>" value="<?php echo esc_attr($_POST['key'.$n]); ?>">
-                   <label for="<?php echo 'value'.$n; ?>">Value:</label>
+                   <label for="<?php echo esc_attr( 'value'.$n ); ?>">Value:</label>
                    <input type="text" id="<?php echo esc_attr('value'.$n); ?>" name="<?php echo esc_attr('value'.$n); ?>" value="<?php echo esc_attr($_POST['value'.$n]); ?>">
                    <button type="button" onclick="deleteKeyValueField(this)">Delete</button>
                  </div>
@@ -131,7 +131,7 @@ function rest_wp_page_content() {
           </script> 
     <?php
     if (isset($_POST['endpoint'])) {
-       $method = $_POST['method'];
+       $method = sanitize_text_field( $_POST['method'] );
 
        // Create an array to store the headers
        $headers = array();
