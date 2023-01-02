@@ -64,3 +64,12 @@ Please follow the below steps for installing this plugin:-
 3. Upload the zip you downloaded
 4. Click on Upload.
 5. After the plugin is uploaded, click on Activate.
+
+== Screenshots ==
+1. Sending API request with GET
+2. Sending API request with POST
+
+== Changelog ==
+
+= 1.0.0 (2023-1-2) =
+- Releasing version 1.0.0
